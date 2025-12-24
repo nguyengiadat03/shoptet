@@ -10,11 +10,20 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-[#b71c1c] to-[#8b0000] py-16 text-white text-center">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">LIÊN HỆ</h1>
-          <p className="text-lg opacity-90">
-            Chúng tôi luôn sẵn sàng hỗ trợ bạn
+      <section className="bg-gradient-to-r from-[#c41e3a] to-[#8b0000] py-16 md:py-20 text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-5 left-10 text-7xl">🏮</div>
+          <div className="absolute bottom-5 right-10 text-7xl">🧧</div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <span className="inline-block bg-[#ffd700] text-[#8b0000] text-xs font-bold px-4 py-1.5 rounded-full mb-4">
+            🐴 TẾT BÍNH NGỌ 2026
+          </span>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 font-[family-name:var(--font-playfair)]">
+            LIÊN HỆ VỚI CHÚNG TÔI
+          </h1>
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">
+            Chúng tôi luôn sẵn sàng hỗ trợ bạn chọn quà Tết ý nghĩa nhất
           </p>
         </div>
       </section>
@@ -22,103 +31,59 @@ export default function ContactPage() {
       {/* Contact Info */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {/* Address */}
-            <div className="text-center p-6 bg-gray-50 rounded-xl">
-              <div className="w-16 h-16 mx-auto mb-4 bg-[#b71c1c] rounded-full flex items-center justify-center">
-                <svg
-                  className="w-8 h-8 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            {[
+              {
+                icon: "📍",
+                title: "Địa chỉ",
+                desc: "15 Đường số 2, khu đô thị Vạn Phúc, Phường Hiệp Bình, TP HCM",
+              },
+              {
+                icon: "📞",
+                title: "Hotline",
+                desc: "0934 022 424",
+                sub: "8:00 - 21:00 hàng ngày",
+              },
+              {
+                icon: "📧",
+                title: "Email",
+                desc: "info@shopquatetvivu.com",
+                sub: "Phản hồi trong 24h",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="text-center p-8 bg-gradient-to-br from-[#fff8e7] to-white rounded-2xl border border-[#f2c18d]/50 hover:shadow-lg transition"
+              >
+                <div className="w-20 h-20 mx-auto mb-5 bg-gradient-to-br from-[#c41e3a] to-[#8b0000] rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-4xl">{item.icon}</span>
+                </div>
+                <h3 className="text-lg font-bold text-[#c41e3a] mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-gray-700 font-medium">{item.desc}</p>
+                {item.sub && (
+                  <p className="text-gray-500 text-sm mt-1">{item.sub}</p>
+                )}
               </div>
-              <h3 className="text-lg font-bold text-[#b71c1c] mb-2">Địa chỉ</h3>
-              <p className="text-gray-600 text-sm">
-                15 Đường số 2, khu đô thị Vạn Phúc,
-                <br />
-                Phường Hiệp Bình, TP Hồ Chí Minh
-              </p>
-            </div>
-
-            {/* Phone */}
-            <div className="text-center p-6 bg-gray-50 rounded-xl">
-              <div className="w-16 h-16 mx-auto mb-4 bg-[#b71c1c] rounded-full flex items-center justify-center">
-                <svg
-                  className="w-8 h-8 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-[#b71c1c] mb-2">
-                Điện thoại
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Hotline: <strong>0934 022 424</strong>
-                <br />
-                (8:00 - 21:00 hàng ngày)
-              </p>
-            </div>
-
-            {/* Email */}
-            <div className="text-center p-6 bg-gray-50 rounded-xl">
-              <div className="w-16 h-16 mx-auto mb-4 bg-[#b71c1c] rounded-full flex items-center justify-center">
-                <svg
-                  className="w-8 h-8 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-[#b71c1c] mb-2">Email</h3>
-              <p className="text-gray-600 text-sm">
-                info@shopquatetvivu.com
-                <br />
-                Phản hồi trong 24h
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Contact Form */}
-      <ContactFormSection />
+      <section className="py-16 bg-[#fff8e7]">
+        <ContactFormSection />
+      </section>
 
       {/* Map */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-[#b71c1c] text-center mb-8">
-            Bản đồ
-          </h2>
-          <div className="aspect-video rounded-xl overflow-hidden shadow-lg bg-gray-200">
+          <div className="section-header mb-10">
+            <h2 className="section-title">📍 BẢN ĐỒ</h2>
+            <div className="section-divider"></div>
+          </div>
+          <div className="aspect-video rounded-2xl overflow-hidden shadow-xl border-4 border-[#ffd700]/30">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4842!2d106.7!3d10.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDUxJzAwLjAiTiAxMDbCsDQyJzAwLjAiRQ!5e0!3m2!1svi!2s!4v1234567890"
               width="100%"
@@ -130,6 +95,21 @@ export default function ContactPage() {
               title="Bản đồ Shop Quà Tết Việt"
             />
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-12 bg-gradient-to-r from-[#c41e3a] to-[#8b0000]">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            Cần tư vấn ngay? Gọi cho chúng tôi!
+          </h2>
+          <a
+            href="tel:0934022424"
+            className="btn btn-gold btn-shimmer text-lg px-10 py-4"
+          >
+            📞 0934 022 424
+          </a>
         </div>
       </section>
     </div>

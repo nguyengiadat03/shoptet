@@ -19,7 +19,6 @@ export default function CheckoutForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
     startTransition(async () => {
       const result = await createOrder(formData);
       if (result.success && result.orderCode) {
@@ -31,15 +30,15 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       {error && (
-        <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm">
-          {error}
+        <div className="bg-red-50 text-red-600 p-4 rounded-xl text-sm border border-red-200 flex items-center gap-2">
+          <span>⚠️</span> {error}
         </div>
       )}
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
           Họ và tên <span className="text-red-500">*</span>
         </label>
         <input
@@ -55,53 +54,60 @@ export default function CheckoutForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Địa chỉ <span className="text-red-500">*</span>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Địa chỉ giao hàng <span className="text-red-500">*</span>
         </label>
         <input
           type="text"
-          placeholder="Nhập địa chỉ"
+          placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"
           value={formData.address}
-          onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, address: e.target.value })
+          }
           required
           className="form-input"
         />
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Số điện thoại <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="tel"
-          placeholder="Nhập số điện thoại"
-          value={formData.phone}
-          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          required
-          className="form-input"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Số điện thoại <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="tel"
+            placeholder="0xxx xxx xxx"
+            value={formData.phone}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
+            required
+            className="form-input"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Email <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            placeholder="email@example.com"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            required
+            className="form-input"
+          />
+        </div>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Địa chỉ email <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="email"
-          placeholder="example@gmail.com"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          required
-          className="form-input"
-        />
-      </div>
-
-      <div className="pt-4 border-t">
-        <h3 className="text-lg font-semibold text-[#b71c1c] mb-4">
-          THÔNG TIN BỔ SUNG
+      <div className="pt-5 border-t border-dashed">
+        <h3 className="text-base font-semibold text-[#c41e3a] mb-4 flex items-center gap-2">
+          <span>📝</span> THÔNG TIN BỔ SUNG
         </h3>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
             Ghi chú đơn hàng (tuỳ chọn)
           </label>
           <textarea
@@ -117,7 +123,7 @@ export default function CheckoutForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="btn btn-primary btn-shimmer w-full mt-6"
+        className="btn btn-primary btn-shimmer w-full py-4 text-base mt-6"
       >
         {isPending ? (
           <span className="flex items-center justify-center gap-2">
@@ -143,7 +149,9 @@ export default function CheckoutForm() {
             Đang xử lý...
           </span>
         ) : (
-          "ĐẶT HÀNG"
+          <span className="flex items-center justify-center gap-2">
+            <span>✅</span> ĐẶT HÀNG NGAY
+          </span>
         )}
       </button>
     </form>
