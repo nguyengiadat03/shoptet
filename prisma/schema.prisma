@@ -1,0 +1,136 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// SQLite for development, MySQL-ready schema
+// To switch to MySQL, change provider to "mysql" and update DATABASE_URL
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ================== CATEGORIES ==================
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  image       String?
+  parentId    String?
+  parent      Category? @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryHierarchy")
+  products    Product[]
+  sortOrder   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// ================== PRODUCTS ==================
+model Product {
+  id              String       @id @default(cuid())
+  sku             String       @unique
+  name            String
+  slug            String       @unique
+  shortDesc       String?
+  longDesc        String?
+  price           Float
+  salePrice       Float?
+  discountPercent Int?
+  images          String       // JSON array of image URLs
+  categoryId      String
+  category        Category     @relation(fields: [categoryId], references: [id])
+  tags            String?      // JSON array of tags
+  priceRange      String?      // "duoi-500k", "500k-1trieu", "1-2trieu", "tren-2trieu"
+  productType     String?      // "hop-qua", "gio-qua", "khay-mut", etc
+  stock           Int          @default(100)
+  isActive        Boolean      @default(true)
+  isFeatured      Boolean      @default(false)
+  cartItems       CartItem[]
+  orderItems      OrderItem[]
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+// ================== CART ==================
+model Cart {
+  id        String     @id @default(cuid())
+  sessionId String     @unique
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([cartId, productId])
+}
+
+// ================== ORDERS ==================
+model Order {
+  id            String      @id @default(cuid())
+  orderCode     String      @unique
+  customerName  String
+  email         String
+  phone         String
+  address       String
+  note          String?
+  subtotal      Float
+  total         Float
+  paymentMethod String      @default("COD")
+  status        String      @default("pending") // pending, confirmed, shipping, completed, cancelled
+  items         OrderItem[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float
+  createdAt DateTime @default(now())
+}
+
+// ================== TESTIMONIALS ==================
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  content   String
+  rating    Int      @default(5)
+  avatar    String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+// ================== CONTACT FORM ==================
+model ContactForm {
+  id        String   @id @default(cuid())
+  name      String
+  address   String?
+  phone     String
+  interest  String?  // Sản phẩm quan tâm
+  message   String?
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// ================== SETTINGS ==================
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}
