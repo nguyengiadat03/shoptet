@@ -1,36 +1,224 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shop Quà Tết Việt - Next.js Ecommerce
 
-## Getting Started
+Website ecommerce bán sản phẩm Tết (Giỏ quà Tết, hộp quà, khay mứt) được xây dựng với Next.js 14 App Router, TypeScript, TailwindCSS và Prisma ORM.
 
-First, run the development server:
+## 🎯 Features
+
+- ✅ **Next.js 14 App Router** với Server Components
+- ✅ **TypeScript** cho type safety
+- ✅ **TailwindCSS** với design tokens Tết 2026
+- ✅ **Prisma ORM** (SQLite dev, MySQL-ready)
+- ✅ **Server Actions** cho cart & checkout
+- ✅ **SEO Optimized** với metadata, OG tags, Schema.org
+- ✅ **Responsive Design** (mobile-first)
+- ✅ **Tết Animations** (hoa mai/đào rơi)
+- ✅ **ISR Caching** cho performance
+
+## 📁 Project Structure
+
+```
+shoptet/
+├── prisma/
+│   ├── schema.prisma          # Database schema
+│   ├── seed.js                # Seed data
+│   └── migrations/            # Migration files
+├── public/
+│   └── images/                # Static images
+├── src/
+│   ├── app/                   # Next.js App Router pages
+│   │   ├── layout.tsx         # Root layout
+│   │   ├── page.tsx           # Home page
+│   │   ├── danh-muc/[slug]/  # Category pages
+│   │   ├── san-pham/[slug]/  # Product pages
+│   │   ├── gio-hang/          # Cart page
+│   │   ├── thanh-toan/        # Checkout page
+│   │   ├── don-hang/[code]/  # Order success page
+│   │   ├── tim-kiem/          # Search page
+│   │   ├── lien-he/           # Contact page
+│   │   ├── chinh-sach/        # Policy pages
+│   │   ├── sitemap.ts         # Dynamic sitemap
+│   │   ├── robots.ts          # Robots.txt
+│   │   └── globals.css        # Global styles
+│   ├── components/            # React components
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   ├── ProductCard.tsx
+│   │   ├── TetAnimation.tsx
+│   │   └── ...
+│   └── lib/                   # Utilities & actions
+│       ├── db.ts              # Prisma client
+│       ├── utils.ts           # Helper functions
+│       ├── cart-actions.ts    # Cart server actions
+│       ├── order-actions.ts   # Order server actions
+│       └── contact-actions.ts # Contact form actions
+├── .env                       # Environment variables
+├── next.config.ts             # Next.js config
+├── tailwind.config.ts         # Tailwind config
+├── prisma.config.ts           # Prisma 7 config
+└── package.json
+```
+
+## 🚀 Getting Started
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Setup Database
+
+```bash
+# Generate Prisma Client
+npx prisma generate
+
+# Run migrations
+npm run db:migrate
+
+# Seed database (optional - có thể seed manual sau)
+npm run db:seed
+```
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📊 Database Schema
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Models:
+- **Category** - Danh mục sản phẩm
+- **Product** - Sản phẩm quà Tết
+- **Cart** & **CartItem** - Giỏ hàng
+- **Order** & **OrderItem** - Đơn hàng
+- **Testimonial** - Đánh giá khách hàng
+- **ContactForm** - Form liên hệ
+- **Setting** - Cấu hình website
 
-## Learn More
+## 🔄 Switching to MySQL (Production)
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Update `prisma/schema.prisma`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```prisma
+datasource db {
+  provider = "mysql"  // Change from "sqlite" to "mysql"
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Update `prisma.config.ts`:
 
-## Deploy on Vercel
+```typescript
+export default defineConfig({
+  schema: "prisma/schema.prisma",
+  migrations: {
+    path: "prisma/migrations",
+  },
+  datasource: {
+    url: process.env["DATABASE_URL"],  // Point to MySQL connection string
+  },
+});
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Update `.env`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+DATABASE_URL="mysql://user:password@localhost:3306/shoptet?charset=utf8mb4&collation=utf8mb4_unicode_ci"
+```
+
+### 4. Run migrations:
+
+```bash
+npm run db:push
+# or
+npm run db:migrate
+```
+
+## 🎨 Design Tokens
+
+Tất cả design tokens được định nghĩa trong `src/app/globals.css`:
+
+- **Primary Red**: `#b71c1c` (Đỏ Tết)
+- **Accent Gold**: `#f6c453` (Vàng gold)
+- **Cream Background**: `#f6e3c5`
+- **Border Orange**: `#f2c18d`
+
+## 📝 Available Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+
+# Database scripts
+npm run db:migrate   # Run Prisma migrations
+npm run db:push      # Push schema to database
+npm run db:seed      # Seed database with sample data
+npm run db:studio    # Open Prisma Studio
+npm run db:reset     # Reset database
+```
+
+## 🌐 Deployment
+
+### Docker Deployment
+
+```bash
+docker build -t shoptet .
+docker run -p 3000:3000 shoptet
+```
+
+### Vercel/Netlify
+
+1. Connect your Git repository
+2. Set environment variables:
+   - `DATABASE_URL`
+   - `NEXT_PUBLIC_SITE_URL`
+3. Deploy!
+
+## 📄 Pages & Routes
+
+| Route | Description |
+|-------|-------------|
+| `/` | Home page |
+| `/danh-muc/[slug]` | Category listing |
+| `/san-pham/[slug]` | Product detail |
+| `/gio-hang` | Shopping cart |
+| `/thanh-toan` | Checkout |
+| `/don-hang/[code]` | Order success |
+| `/tim-kiem` | Search |
+| `/lien-he` | Contact |
+| `/chinh-sach/*` | Policy pages |
+
+## 🎯 SEO Features
+
+- ✅ Dynamic metadata per page
+- ✅ Open Graph tags
+- ✅ Schema.org JSON-LD (Product, BreadcrumbList, Organization)
+- ✅ Dynamic sitemap.xml
+- ✅ robots.txt
+- ✅ Canonical URLs
+- ✅ ISR for static pages
+
+## 🎨 Tết 2026 Animations
+
+- Hoa mai/đào rơi nhẹ (CSS keyframes)
+- Shimmer effect trên CTA buttons
+- Respects `prefers-reduced-motion`
+- Auto-disabled trên mobile để tối ưu performance
+
+## 📞 Support
+
+For questions or issues, contact:
+- Email: info@shopquatetvivu.com
+- Phone: 0934 022 424
+
+## 📝 License
+
+Private - All rights reserved
+
+---
+
+**Built with ❤️ for Tết Bính Ngọ 2026**

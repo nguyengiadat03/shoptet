@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { getOrCreateCart } from "@/lib/cart-actions";
+import { getCart } from "@/lib/cart-actions";
 import CheckoutForm from "@/components/CheckoutForm";
 import { formatVND } from "@/lib/utils";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function CheckoutPage() {
-  const cart = await getOrCreateCart();
+  const cart = await getCart();
 
   if (cart.items.length === 0) {
     redirect("/gio-hang");

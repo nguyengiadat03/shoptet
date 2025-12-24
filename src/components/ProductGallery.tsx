@@ -13,7 +13,7 @@ export default function ProductGallery({
   productName,
 }: ProductGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const mainImage = images[selectedIndex] || "/images/placeholder.jpg";
+  const mainImage = images[selectedIndex] || "/images/placeholder.svg";
 
   return (
     <div>

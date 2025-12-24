@@ -22,7 +22,7 @@ export default function ProductCard({
   showAddToCart = false,
 }: ProductCardProps) {
   const images = JSON.parse(product.images) as string[];
-  const mainImage = images[0] || "/images/placeholder.jpg";
+  const mainImage = images[0] || "/images/placeholder.svg";
   const hasDiscount =
     product.salePrice && product.salePrice < product.price;
   const displayPrice = product.salePrice || product.price;

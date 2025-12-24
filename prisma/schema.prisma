@@ -6,9 +6,10 @@ generator client {
 }
 
 // SQLite for development, MySQL-ready schema
-// To switch to MySQL, change provider to "mysql" and update DATABASE_URL in prisma.config.ts
+// To switch to MySQL, change provider to "mysql" and update DATABASE_URL
 datasource db {
   provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 // ================== CATEGORIES ==================

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { getOrCreateCart } from "@/lib/cart-actions";
+import { getCart } from "@/lib/cart-actions";
 import CartTable from "@/components/CartTable";
 import { formatVND } from "@/lib/utils";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function CartPage() {
-  const cart = await getOrCreateCart();
+  const cart = await getCart();
 
   const subtotal = cart.items.reduce((acc, item) => {
     const price = item.product.salePrice || item.product.price;

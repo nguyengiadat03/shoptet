@@ -1,0 +1,26 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#f5f5f5"/>
+  <rect x="10" y="10" width="780" height="780" fill="white" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Gift Box Icon -->
+  <g transform="translate(400, 350)">
+    <!-- Box -->
+    <rect x="-60" y="-40" width="120" height="100" fill="#b71c1c" rx="4"/>
+    <!-- Ribbon Vertical -->
+    <rect x="-8" y="-40" width="16" height="100" fill="#f6c453"/>
+    <!-- Ribbon Horizontal -->
+    <rect x="-60" y="16" width="120" height="16" fill="#f6c453"/>
+    <!-- Bow -->
+    <circle cx="-20" cy="-50" r="12" fill="#f6c453"/>
+    <circle cx="20" cy="-50" r="12" fill="#f6c453"/>
+    <circle cx="0" cy="-50" r="8" fill="#f6c453"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="400" y="520" font-family="Arial, sans-serif" font-size="24" fill="#666" text-anchor="middle">
+    Product Image
+  </text>
+  <text x="400" y="550" font-family="Arial, sans-serif" font-size="16" fill="#999" text-anchor="middle">
+    Placeholder
+  </text>
+</svg>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import prisma from "@/lib/db";
 import ProductCard from "@/components/ProductCard";
 import FilterSidebar from "@/components/FilterSidebar";
+import SortSelect from "@/components/SortSelect";
 
 export const revalidate = 3600;
 
@@ -149,31 +150,13 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
 
             {/* Products */}
             <div className="lg:col-span-3">
-              {/* Header */}
               <div className="flex items-center justify-between mb-6">
                 <h1 className="text-2xl font-bold text-[#b71c1c]">
                   {category.name}
                 </h1>
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-gray-600">Sắp xếp:</span>
-                  <select
-                    className="form-input py-2 px-3 w-auto text-sm"
-                    defaultValue={filters.sort || ""}
-                    onChange={(e) => {
-                      const url = new URL(window.location.href);
-                      if (e.target.value) {
-                        url.searchParams.set("sort", e.target.value);
-                      } else {
-                        url.searchParams.delete("sort");
-                      }
-                      window.location.href = url.toString();
-                    }}
-                  >
-                    <option value="">Mặc định</option>
-                    <option value="price-asc">Giá thấp đến cao</option>
-                    <option value="price-desc">Giá cao đến thấp</option>
-                    <option value="name">Tên A-Z</option>
-                  </select>
+                  <SortSelect currentSort={filters.sort} />
                 </div>
               </div>
 
