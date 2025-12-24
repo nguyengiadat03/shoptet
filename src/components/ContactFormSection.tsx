@@ -23,74 +23,78 @@ export default function ContactFormSection() {
   };
 
   return (
-    <section className="video-form-section py-16">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Video */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#b71c1c] mb-6 font-[family-name:var(--font-playfair)]">
-              Video giới thiệu khay quà Tết 2026
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        {/* Video */}
+        <div>
+          <div className="mb-6">
+            <span className="inline-block bg-[#c41e3a] text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+              🎬 VIDEO
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#c41e3a] font-[family-name:var(--font-playfair)]">
+              Giới thiệu Quà Tết 2026
             </h2>
-            <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg">
-              <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="Video giới thiệu khay quà Tết"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-              />
-            </div>
-            <p className="text-gray-600 text-sm mt-4 flex items-center gap-2">
-              Xem trên
-              <span className="inline-flex items-center gap-1 bg-red-600 text-white px-2 py-1 rounded text-xs font-medium">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
-                  <polygon fill="#fff" points="9.545,15.568 15.818,12 9.545,8.432"/>
-                </svg>
-                YouTube
-              </span>
+          </div>
+          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-xl border-4 border-[#ffd700]">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="Video giới thiệu quà Tết"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+            />
+          </div>
+          <div className="flex items-center gap-4 mt-4 text-sm text-gray-500">
+            <span className="flex items-center gap-1">
+              <span className="text-[#ff0000]">▶</span> Xem trên YouTube
+            </span>
+          </div>
+        </div>
+
+        {/* Contact Form */}
+        <div className="contact-form-box">
+          <div className="mb-6">
+            <span className="inline-block bg-[#ffd700] text-[#8b0000] text-xs font-bold px-3 py-1 rounded-full mb-3">
+              🐴 TẾT BÍNH NGỌ 2026
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#c41e3a] font-[family-name:var(--font-playfair)]">
+              Đăng ký tư vấn miễn phí
+            </h2>
+            <p className="text-gray-600 mt-2 text-sm">
+              Để lại thông tin, chúng tôi sẽ liên hệ tư vấn ngay!
             </p>
           </div>
 
-          {/* Contact Form */}
-          <div className="contact-form-box">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#b71c1c] mb-2 font-[family-name:var(--font-playfair)]">
-              Liên hệ đặt quà tết Bính Ngọ
-            </h2>
-            <p className="text-gray-600 mb-6 text-sm">
-              Nếu bạn có nhu cầu đặt giỏ quà tết 2026, hãy để lại thông tin,
-              Shopquatetvivu.com sẽ liên hệ hỗ trợ ngay nhất!
-            </p>
-
-            {submitted ? (
-              <div className="text-center py-8">
-                <div className="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-green-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-green-600 mb-2">
-                  Đăng ký thành công!
-                </h3>
-                <p className="text-gray-600">
-                  Chúng tôi sẽ liên hệ với bạn sớm nhất.
-                </p>
+          {submitted ? (
+            <div className="text-center py-10">
+              <div className="w-20 h-20 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
+                <svg
+                  className="w-10 h-10 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <h3 className="text-xl font-bold text-green-600 mb-2">
+                Đăng ký thành công!
+              </h3>
+              <p className="text-gray-600">
+                Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
                 <input
                   type="text"
-                  placeholder="Tên khách hàng"
+                  placeholder="Họ và tên *"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -98,6 +102,8 @@ export default function ContactFormSection() {
                   required
                   className="form-input"
                 />
+              </div>
+              <div>
                 <input
                   type="text"
                   placeholder="Địa chỉ"
@@ -107,9 +113,11 @@ export default function ContactFormSection() {
                   }
                   className="form-input"
                 />
+              </div>
+              <div>
                 <input
                   type="tel"
-                  placeholder="Số điện thoại"
+                  placeholder="Số điện thoại *"
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
@@ -117,6 +125,8 @@ export default function ContactFormSection() {
                   required
                   className="form-input"
                 />
+              </div>
+              <div>
                 <input
                   type="text"
                   placeholder="Sản phẩm đang quan tâm"
@@ -126,18 +136,43 @@ export default function ContactFormSection() {
                   }
                   className="form-input"
                 />
-                <button
-                  type="submit"
-                  disabled={isPending}
-                  className="btn btn-primary btn-shimmer w-full"
-                >
-                  {isPending ? "Đang gửi..." : "ĐĂNG KÝ TƯ VẤN"}
-                </button>
-              </form>
-            )}
-          </div>
+              </div>
+              <button
+                type="submit"
+                disabled={isPending}
+                className="btn btn-primary btn-shimmer w-full py-4 text-base"
+              >
+                {isPending ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg
+                      className="animate-spin w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      />
+                    </svg>
+                    Đang gửi...
+                  </span>
+                ) : (
+                  "🎁 ĐĂNG KÝ TƯ VẤN NGAY"
+                )}
+              </button>
+            </form>
+          )}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -21,12 +21,12 @@ export default function HeaderClient({ menuItems }: HeaderClientProps) {
     <>
       {/* Mobile menu button */}
       <button
-        className="lg:hidden text-white p-2"
+        className="xl:hidden w-10 h-10 flex items-center justify-center bg-white/10 rounded-full text-white hover:bg-white/20 transition"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Menu"
       >
         <svg
-          className="w-6 h-6"
+          className="w-5 h-5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -52,26 +52,30 @@ export default function HeaderClient({ menuItems }: HeaderClientProps) {
       {/* Mobile menu overlay */}
       {isOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/50 z-40"
+          className="xl:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
           onClick={() => setIsOpen(false)}
         />
       )}
 
       {/* Mobile menu drawer */}
       <div
-        className={`lg:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-50 transform transition-transform duration-300 ${
+        className={`xl:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-50 transform transition-transform duration-300 shadow-2xl ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="p-4 bg-[#b71c1c] flex items-center justify-between">
-          <span className="text-white font-bold text-lg">Menu</span>
+        {/* Header */}
+        <div className="p-5 bg-gradient-to-r from-[#c41e3a] to-[#8b0000] flex items-center justify-between">
+          <div>
+            <span className="text-xl font-bold text-white">Shop</span>
+            <span className="text-xl font-bold text-[#ffd700]">quatet</span>
+          </div>
           <button
-            className="text-white"
+            className="w-8 h-8 flex items-center justify-center bg-white/20 rounded-full text-white"
             onClick={() => setIsOpen(false)}
             aria-label="Close menu"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -85,23 +89,27 @@ export default function HeaderClient({ menuItems }: HeaderClientProps) {
             </svg>
           </button>
         </div>
-        <nav className="p-4 overflow-y-auto max-h-[calc(100vh-60px)]">
+
+        {/* Navigation */}
+        <nav className="p-4 overflow-y-auto max-h-[calc(100vh-80px)]">
           {menuItems.map((item) => (
             <div key={item.name} className="border-b border-gray-100">
               {item.dropdown ? (
                 <>
                   <button
-                    className="w-full py-3 px-2 flex items-center justify-between text-gray-800 font-medium"
+                    className="w-full py-4 px-3 flex items-center justify-between text-gray-700 font-medium hover:text-[#c41e3a] transition"
                     onClick={() =>
                       setOpenDropdown(
                         openDropdown === item.name ? null : item.name
                       )
                     }
                   >
-                    {item.name}
+                    <span>{item.name}</span>
                     <svg
                       className={`w-4 h-4 transition-transform ${
-                        openDropdown === item.name ? "rotate-180" : ""
+                        openDropdown === item.name
+                          ? "rotate-180 text-[#c41e3a]"
+                          : ""
                       }`}
                       fill="none"
                       stroke="currentColor"
@@ -115,25 +123,29 @@ export default function HeaderClient({ menuItems }: HeaderClientProps) {
                       />
                     </svg>
                   </button>
-                  {openDropdown === item.name && (
-                    <div className="pl-4 pb-2">
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      openDropdown === item.name ? "max-h-96" : "max-h-0"
+                    }`}
+                  >
+                    <div className="pl-4 pb-3 space-y-1">
                       {item.dropdown.map((subItem) => (
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className="block py-2 px-2 text-gray-600 hover:text-[#b71c1c]"
+                          className="block py-2.5 px-3 text-gray-600 hover:text-[#c41e3a] hover:bg-[#fff8e7] rounded-lg transition text-sm"
                           onClick={() => setIsOpen(false)}
                         >
                           {subItem.name}
                         </Link>
                       ))}
                     </div>
-                  )}
+                  </div>
                 </>
               ) : (
                 <Link
                   href={item.href}
-                  className="block py-3 px-2 text-gray-800 font-medium hover:text-[#b71c1c]"
+                  className="block py-4 px-3 text-gray-700 font-medium hover:text-[#c41e3a] transition"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
@@ -141,6 +153,32 @@ export default function HeaderClient({ menuItems }: HeaderClientProps) {
               )}
             </div>
           ))}
+
+          {/* Contact Info */}
+          <div className="mt-6 p-4 bg-[#fff8e7] rounded-xl">
+            <p className="text-sm font-semibold text-[#c41e3a] mb-3">
+              Hotline đặt hàng:
+            </p>
+            <a
+              href="tel:0934022424"
+              className="flex items-center gap-2 text-lg font-bold text-[#c41e3a]"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+              </svg>
+              0934 022 424
+            </a>
+          </div>
         </nav>
       </div>
     </>

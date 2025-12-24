@@ -16,22 +16,22 @@ export default function ProductGallery({
   const mainImage = images[selectedIndex] || "/images/placeholder.svg";
 
   return (
-    <div>
+    <div className="relative">
       {/* Watermark */}
       <div className="absolute top-4 left-4 z-10">
-        <span className="text-lg font-bold">
-          <span className="text-[#b71c1c]">Shop</span>
-          <span className="text-[#f6c453]">quatet</span>
+        <span className="text-lg font-bold bg-white/90 px-3 py-1 rounded-full shadow-md">
+          <span className="text-[#c41e3a]">Shop</span>
+          <span className="text-[#daa520]">quatet</span>
         </span>
       </div>
 
       {/* Main Image */}
-      <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100 mb-4">
+      <div className="relative aspect-square rounded-2xl overflow-hidden bg-gray-50 mb-4 border-2 border-[#f2c18d]/50 shadow-lg">
         <Image
           src={mainImage}
           alt={productName}
           fill
-          className="object-cover"
+          className="object-cover hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, 50vw"
           priority
         />
@@ -39,15 +39,15 @@ export default function ProductGallery({
 
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-2">
+        <div className="flex gap-3 overflow-x-auto pb-2">
           {images.map((img, index) => (
             <button
               key={index}
               onClick={() => setSelectedIndex(index)}
-              className={`relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden border-2 transition ${
+              className={`relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
                 index === selectedIndex
-                  ? "border-[#b71c1c]"
-                  : "border-gray-200 hover:border-gray-400"
+                  ? "border-[#c41e3a] shadow-md scale-105"
+                  : "border-gray-200 hover:border-[#ffd700]"
               }`}
             >
               <Image
@@ -55,7 +55,7 @@ export default function ProductGallery({
                 alt={`${productName} ${index + 1}`}
                 fill
                 className="object-cover"
-                sizes="64px"
+                sizes="80px"
               />
             </button>
           ))}

@@ -25,25 +25,24 @@ export default function AddToCartButton({
     });
   };
 
-  const sizeClasses = size === "small" 
-    ? "py-2 px-3 text-xs" 
-    : "py-3 px-6 text-sm";
+  const sizeClasses =
+    size === "small" ? "py-2.5 px-4 text-xs" : "py-3.5 px-6 text-sm";
 
   return (
     <button
       onClick={handleClick}
       disabled={isPending}
-      className={`btn btn-primary btn-shimmer w-full ${sizeClasses} ${
+      className={`btn w-full ${sizeClasses} ${
         isPending ? "opacity-70 cursor-not-allowed" : ""
-      } ${added ? "bg-green-600 hover:bg-green-700" : ""}`}
+      } ${
+        added
+          ? "bg-green-500 hover:bg-green-600 text-white"
+          : "bg-gradient-to-r from-[#c41e3a] to-[#8b0000] text-white hover:from-[#8b0000] hover:to-[#c41e3a]"
+      } shadow-md hover:shadow-lg transition-all`}
     >
       {isPending ? (
-        <span className="flex items-center gap-2">
-          <svg
-            className="animate-spin w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
+        <span className="flex items-center justify-center gap-2">
+          <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
             <circle
               className="opacity-25"
               cx="12"
@@ -61,14 +60,39 @@ export default function AddToCartButton({
           Đang thêm...
         </span>
       ) : added ? (
-        <span className="flex items-center gap-2">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        <span className="flex items-center justify-center gap-2">
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
           </svg>
           Đã thêm!
         </span>
       ) : (
-        "THÊM VÀO GIỎ HÀNG"
+        <span className="flex items-center justify-center gap-2">
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            />
+          </svg>
+          Thêm vào giỏ
+        </span>
       )}
     </button>
   );

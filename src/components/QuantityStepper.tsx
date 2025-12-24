@@ -41,11 +41,11 @@ export default function QuantityStepper({
   };
 
   return (
-    <div className="quantity-stepper">
+    <div className="inline-flex items-center border-2 border-[#f2c18d] rounded-xl overflow-hidden bg-white">
       <button
         onClick={handleDecrease}
         disabled={value <= min}
-        className="disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-12 h-12 flex items-center justify-center bg-[#fff8e7] hover:bg-[#ffd700]/30 text-[#c41e3a] font-bold text-xl transition disabled:opacity-40 disabled:cursor-not-allowed"
         aria-label="Giảm số lượng"
       >
         −
@@ -56,12 +56,13 @@ export default function QuantityStepper({
         onChange={handleChange}
         min={min}
         max={max}
+        className="w-16 h-12 text-center font-bold text-lg border-none focus:outline-none"
         aria-label="Số lượng"
       />
       <button
         onClick={handleIncrease}
         disabled={value >= max}
-        className="disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-12 h-12 flex items-center justify-center bg-[#fff8e7] hover:bg-[#ffd700]/30 text-[#c41e3a] font-bold text-xl transition disabled:opacity-40 disabled:cursor-not-allowed"
         aria-label="Tăng số lượng"
       >
         +
